@@ -1,17 +1,15 @@
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-if vim.fn.empty(vim.fn.glob(install_packer)) > 0 then
+if vim.fn.isdirectory(install_path) == 0 then
+    print 'downloading packer.nvim'
     packer_bootstrap = vim.fn.system { 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path }
     vim.cmd [[packadd packer.nvim]]
 end
 
-local packer = require 'packer'
-
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins/init.lua source <afile> | PackerCompile
-  augroup end
-]])
+local status_ok, packer = pcall(require, 'packer')
+if not status_ok then
+    print 'packer not loaded!'
+    return
+end
 
 local init = {
     plugins = function(use)
@@ -21,7 +19,6 @@ local init = {
             'windwp/nvim-autopairs',
             config = function()
                 require('nvim-autopairs').setup()
-                print('fuck world')
             end,
         }
 
@@ -95,6 +92,10 @@ local init = {
             requires = 'kyazdani42/nvim-web-devicons',
             config = function() require('bufferline').setup() end
         }
+
+        if packer_bootstrap then
+            packer.sync()
+        end
     end,
     config = {
         profile = {
