@@ -1,22 +1,38 @@
 local nvim_tree = require 'nvim-tree'
 
 nvim_tree.setup {
-    create_in_closed_folder = true,
     disable_netrw = true,
-    hijack_cursor = true,
-    hijack_unnamed_buffer_when_opening = true,
+    create_in_closed_folder = true,
     sync_root_with_cwd = true,
+    hijack_cursor = true,
     respect_buf_cwd = true,
+    diagnostics = {
+        enable = true,
+    },
+    filesystem_watchers = {
+        enable = true,
+    },
     renderer = {
         group_empty = true,
-        highlight_git = true,
         full_name = true,
+        highlight_git = true,
         highlight_opened_files = 'all',
         indent_markers = {
             enable = true,
         },
+        icons = {
+            git_placement = 'signcolumn',
+        },
     },
     filters = {
         dotfiles = true,
+    },
+    actions = {
+        change_dir = {
+            global = true
+        },
+        open_file = {
+            quit_on_open = true,
+        },
     },
 }

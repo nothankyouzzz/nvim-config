@@ -6,6 +6,13 @@ end
 
 local packer = require 'packer'
 
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins/init.lua source <afile> | PackerCompile
+  augroup end
+]])
+
 local init = {
     plugins = function(use)
         use 'wbthomason/packer.nvim'
@@ -14,6 +21,7 @@ local init = {
             'windwp/nvim-autopairs',
             config = function()
                 require('nvim-autopairs').setup()
+                print('fuck world')
             end,
         }
 
@@ -39,8 +47,19 @@ local init = {
                 require 'plugins.nvim-tree'
             end,
             tag = 'nightly',
-            cmd = 'NvimTreeToggle',
-            opt = false,
+            cmd = {
+                'NvimTreeOpen',
+                'NvimTreeClose',
+                'NvimTreeToggle',
+                'NvimTreeFocus',
+                'NvimTreeRefresh',
+                'NvimTreeFindFile',
+                'NvimTreeFindFileToggle',
+                'NvimTreeClipboard',
+                'NvimTreeResize',
+                'NvimTreeCollapse',
+                'NvimTreeCollapseKeepBuffers',
+            },
         }
 
         use {
@@ -61,6 +80,20 @@ local init = {
             config = function()
                 require 'plugins.treesitter'
             end,
+            event = 'BufEnter'
+        }
+
+        use {
+            'lewis6991/gitsigns.nvim',
+            config = function() require('gitsigns').setup() end,
+            event = 'BufEnter'
+        }
+
+        use {
+            'akinsho/bufferline.nvim',
+            tag = "v2.*",
+            requires = 'kyazdani42/nvim-web-devicons',
+            config = function() require('bufferline').setup() end
         }
     end,
     config = {
