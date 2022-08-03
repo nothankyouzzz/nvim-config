@@ -10,6 +10,7 @@ if not status_ok then
     print 'packer not loaded!'
     return
 end
+local packer_util = require 'packer.util'
 
 local init = {
     plugins = function(use)
@@ -93,6 +94,34 @@ local init = {
             config = function() require('bufferline').setup() end
         }
 
+        use {
+            'hrsh7th/nvim-cmp',
+            requires = {
+                {
+                    'hrsh7th/cmp-nvim-lsp',
+                    requires = {
+                        'neovim/nvim-lspconfig',
+                        requires = {
+                            'williamboman/nvim-lsp-installer',
+                            config = function()
+                                require('nvim-lsp-installer').setup()
+                            end
+                        }
+                    },
+                },
+                { 'hrsh7th/cmp-buffer' },
+                { 'hrsh7th/cmp-path' },
+                { 'hrsh7th/cmp-cmdline' },
+                {
+                    'saadparwaiz1/cmp_luasnip',
+                    requires = 'L3MON4D3/LuaSnip',
+                },
+            },
+            config = function()
+                require 'plugins.nvim-cmp'
+            end,
+        }
+
         if packer_bootstrap then
             packer.sync()
         end
@@ -106,7 +135,13 @@ local init = {
                 return require('packer.util').float { border = 'single' }
             end,
         },
+        compile_path = packer_util.join_paths(vim.fn.stdpath('data'), 'site', 'lua', 'packer_compiled.lua'),
     },
 }
 
 packer.startup { init.plugins, config = init.config }
+
+local status_ok, _ = pcall(require, 'packer_compiled')
+if not status_ok then
+    print 'Error requiring packer_compiled.lua: run PackerSync to fix!'
+end
