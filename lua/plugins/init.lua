@@ -96,30 +96,30 @@ local init = {
 
         use {
             'hrsh7th/nvim-cmp',
+            config = function()
+                require 'plugins.nvim-cmp'
+            end,
             requires = {
                 {
                     'hrsh7th/cmp-nvim-lsp',
-                    requires = {
-                        'neovim/nvim-lspconfig',
-                        requires = {
-                            'williamboman/nvim-lsp-installer',
-                            config = function()
-                                require('nvim-lsp-installer').setup()
-                            end
-                        }
-                    },
+                    requires = 'neovim/nvim-lspconfig'
                 },
-                { 'hrsh7th/cmp-buffer' },
-                { 'hrsh7th/cmp-path' },
-                { 'hrsh7th/cmp-cmdline' },
+                'hrsh7th/cmp-buffer',
+                'hrsh7th/cmp-path',
+                'hrsh7th/cmp-cmdline',
                 {
                     'saadparwaiz1/cmp_luasnip',
                     requires = 'L3MON4D3/LuaSnip',
                 },
-            },
+            }
+        }
+
+        use {
+            'williamboman/nvim-lsp-installer',
+            requires = 'neovim/nvim-lspconfig',
             config = function()
-                require 'plugins.nvim-cmp'
-            end,
+                require('nvim-lsp-installer').setup()
+            end
         }
 
         if packer_bootstrap then
