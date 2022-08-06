@@ -1,22 +1,21 @@
-local loaded, lspconfig = pcall(require, 'lspconfig')
-if not loaded then
-    print 'nvim-lspconfig not loaded'
-    return
+local M = {}
+
+local lspconfig = require 'lspconfig'
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+M.default_keymaps = function()
+    vim.api.nvim_buf_set_keymap(0, 'n', 'K',     '<cmd>lua vim.lsp.buf.hover()<CR>',      { noremap = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', 'gd',    '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true })
 end
 
-local lsp_servers = {
-    'sumneko_lua',
+M.servers = {
+    'sumneko_lua'
 }
-for _, name in pairs(lsp_servers) do
-    local exist, config = require('lsp.' .. name)
-    if not exist then
-        print('warning: lsp config for [' .. name .. '] not exist. skip configuration')
-        goto skip
+
+M.setup = function()
+    for _, name in pairs(M.servers) do
+        require('lsp.' .. name).setup(lspconfig, capabilities, default_keymaps)
     end
-
-    print(name)
-
-    lspconfig[name].setup { config }
-
-    ::skip::
 end
+
+return M

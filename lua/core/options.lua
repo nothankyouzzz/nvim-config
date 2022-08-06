@@ -11,6 +11,7 @@ vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.opt.scrolloff = 8
 vim.opt.wrap = false
+vim.opt.pumheight = 8
 
 vim.opt.mouse = 'a'
 vim.opt.completeopt = 'menuone,noinsert,noselect'

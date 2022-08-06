@@ -1,4 +1,5 @@
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local packer_bootstrap = nil
 if vim.fn.isdirectory(install_path) == 0 then
     print 'downloading packer.nvim'
     packer_bootstrap = vim.fn.system { 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path }
@@ -98,29 +99,28 @@ local init = {
             'hrsh7th/nvim-cmp',
             config = function()
                 require 'plugins.nvim-cmp'
-            end,
-            requires = {
-                {
-                    'hrsh7th/cmp-nvim-lsp',
-                    requires = 'neovim/nvim-lspconfig'
-                },
-                'hrsh7th/cmp-buffer',
-                'hrsh7th/cmp-path',
-                'hrsh7th/cmp-cmdline',
-                {
-                    'saadparwaiz1/cmp_luasnip',
-                    requires = 'L3MON4D3/LuaSnip',
-                },
-            }
+            end
         }
 
         use {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            'saadparwaiz1/cmp_luasnip',
+        }
+
+        use 'L3MON4D3/LuaSnip'
+
+        use {
             'williamboman/nvim-lsp-installer',
-            requires = 'neovim/nvim-lspconfig',
+            requires = { 'neovim/nvim-lspconfig', requires = 'cmp-nvim-lsp' },
             config = function()
-                require('nvim-lsp-installer').setup()
+                require 'plugins.nvim-lsp-installer'
             end
         }
+
+        use "folke/lua-dev.nvim"
 
         if packer_bootstrap then
             packer.sync()
