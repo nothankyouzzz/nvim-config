@@ -4,9 +4,12 @@ if not status_ok then
 end
 
 which_key.setup {
-    window = {
-        border = 'single',
+    plugins = {
+        registers = false
     },
+    window = {
+        border = 'single'
+    }
 }
 
 which_key.register({
@@ -28,7 +31,8 @@ which_key.register({
         name = 'BufferLine',
         h = { '<cmd>BufferLineCloseLeft<cr>', 'Close left buffers', },
         l = { '<cmd>BufferLineCloseRight<cr>', 'Close right buffers', },
-    }
+    },
+    t = { '<cmd>ToggleTerm<cr>', 'ToggleTerm' }
 }, {
     prefix = '<leader>'
 })

@@ -79,7 +79,14 @@ local init = {
             config = function()
                 require 'plugins.treesitter'
             end,
-            event = 'BufEnter'
+        }
+
+        use {
+            'nvim-treesitter/nvim-treesitter-context',
+            requires = 'nvim-treesitter/nvim-treesitter',
+            config = function()
+                require('treesitter-context').setup()
+            end,
         }
 
         use {
@@ -90,7 +97,7 @@ local init = {
 
         use {
             'akinsho/bufferline.nvim',
-            tag = "v2.*",
+            tag = 'v2.*',
             requires = 'kyazdani42/nvim-web-devicons',
             config = function() require('bufferline').setup() end
         }
@@ -114,13 +121,33 @@ local init = {
 
         use {
             'williamboman/nvim-lsp-installer',
-            requires = { 'neovim/nvim-lspconfig', requires = 'cmp-nvim-lsp' },
+            requires = 'neovim/nvim-lspconfig',
             config = function()
                 require 'plugins.nvim-lsp-installer'
             end
         }
 
-        use "folke/lua-dev.nvim"
+        use 'folke/lua-dev.nvim'
+
+        use {
+            'numToStr/Comment.nvim',
+            config = function()
+                require('Comment').setup()
+            end
+        }
+
+        use {
+            'lukas-reineke/indent-blankline.nvim',
+            config = function() require('indent_blankline').setup() end
+        }
+
+        use {
+            'akinsho/toggleterm.nvim',
+            tag = 'v2.*',
+            config = function()
+                require 'plugins.toggleterm'
+            end
+        }
 
         if packer_bootstrap then
             packer.sync()
