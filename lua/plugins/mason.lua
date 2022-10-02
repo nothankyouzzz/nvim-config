@@ -1,6 +1,6 @@
-local loaded, installer = pcall(require, 'nvim-lsp-installer')
+local loaded, installer = pcall(require, 'mason')
 if not loaded then
-    print 'nvim-lsp-installer not loaded'
+    print 'mason not loaded'
 end
 
 local config = {

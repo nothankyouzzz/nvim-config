@@ -14,6 +14,6 @@ vim.opt.wrap = false
 vim.opt.pumheight = 8
 
 vim.opt.mouse = 'a'
-vim.opt.completeopt = 'menuone,noinsert,noselect'
+vim.opt.completeopt = 'menu,menuone,noselect'
 
 vim.g.mapleader = ' '

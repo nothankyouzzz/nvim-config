@@ -32,7 +32,8 @@ which_key.register({
         h = { '<cmd>BufferLineCloseLeft<cr>', 'Close left buffers', },
         l = { '<cmd>BufferLineCloseRight<cr>', 'Close right buffers', },
     },
-    t = { '<cmd>ToggleTerm<cr>', 'ToggleTerm' }
+    t = { '<cmd>ToggleTerm<cr>', 'ToggleTerm' },
+    m = { '<cmd>MarkdownPreview<cr>', 'Toggle markdown preivew' }
 }, {
     prefix = '<leader>'
 })

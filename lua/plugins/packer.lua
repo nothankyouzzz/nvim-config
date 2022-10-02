@@ -34,8 +34,7 @@ local init = {
         use {
             'folke/tokyonight.nvim',
             config = function()
-                vim.g.tokyonight_style = 'night'
-                vim.cmd [[colorscheme tokyonight]]
+                vim.cmd [[colorscheme tokyonight-night]]
             end,
         }
 
@@ -102,28 +101,35 @@ local init = {
             config = function() require('bufferline').setup() end
         }
 
+        -- complete engine
         use {
             'hrsh7th/nvim-cmp',
+            requires = {
+                'onsails/lspkind.nvim',
+                'neovim/nvim-lspconfig',
+                'hrsh7th/cmp-nvim-lsp',
+                'hrsh7th/cmp-buffer',
+                'hrsh7th/cmp-path',
+                'hrsh7th/cmp-cmdline',
+                'hrsh7th/cmp-nvim-lua',
+                'dcampos/cmp-snippy',
+            },
             config = function()
                 require 'plugins.nvim-cmp'
             end
         }
 
+        -- snippets
         use {
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-cmdline',
-            'saadparwaiz1/cmp_luasnip',
+            'dcampos/nvim-snippy',
+            'honza/vim-snippets',
         }
 
-        use 'L3MON4D3/LuaSnip'
-
         use {
-            'williamboman/nvim-lsp-installer',
+            'williamboman/mason.nvim',
             requires = 'neovim/nvim-lspconfig',
             config = function()
-                require 'plugins.nvim-lsp-installer'
+                require('mason').setup()
             end
         }
 
@@ -149,6 +155,13 @@ local init = {
             end
         }
 
+        use {
+            'iamcco/markdown-preview.nvim',
+            run = function()
+                vim.fn["mkdp#util#install"]()
+            end
+        }
+
         if packer_bootstrap then
             packer.sync()
         end
@@ -168,7 +181,9 @@ local init = {
 
 packer.startup { init.plugins, config = init.config }
 
-local status_ok, _ = pcall(require, 'packer_compiled')
-if not status_ok then
-    print 'Error requiring packer_compiled.lua: run PackerSync to fix!'
+local is_cache_exists, _ = pcall(require, 'packer_compiled')
+if not is_cache_exists then
+    print 'Compiling...'
+    vim.cmd [[:PackerCompile]]
+    print 'Compile completed, please mannually restart nvim...'
 end
