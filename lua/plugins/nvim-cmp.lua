@@ -79,7 +79,7 @@ cmp.setup {
                     kind.kind = ' ' .. strings[1] .. ' '
                 end
 
-                kind.menu = '[' .. ({ nvim_lsp = 'LSP', nvim_lua = 'Lua', snippy = 'Snippets', path = 'Path', buffer = 'Buffer' })[entry.source.name] .. ']'
+                kind.menu = '['.. strings[2] .. ']'
             end
 
             return kind
