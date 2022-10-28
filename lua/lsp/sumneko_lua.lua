@@ -1,15 +1,11 @@
 local M = {}
 
-M.setup = function(lspconfig, capabilities)
-    local config = require('lua-dev').setup {
-        runtime_path = true,
-        lspconfig = {
-            on_attach = require('lsp').default_keymaps,
-            capabilities = capabilities
-        }
-    }
-
-    lspconfig['sumneko_lua'].setup(config)
+M.setup = function(lspconfig, capabilities, keymaps)
+  require('neodev').setup()
+  lspconfig['sumneko_lua'].setup {
+    on_attach = keymaps,
+    capabilities = capabilities
+  }
 end
 
 return M

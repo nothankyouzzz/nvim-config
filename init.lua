@@ -1,9 +1,9 @@
 local elements = {
-    'core',
-    'plugins',
-    'lsp'
+  'core',
+  'plugins',
+  'lsp'
 }
 
 for _, element in pairs(elements) do
-    require(element):setup()
+  require(element):setup()
 end
