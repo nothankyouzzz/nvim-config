@@ -13,12 +13,12 @@ vim.opt.cursorline = true
 vim.opt.wrap = false
 vim.opt.pumheight = 8
 
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 vim.opt.clipboard = "unnamedplus"
-vim.opt.completeopt = { 'menuone', 'noselect' }
+vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.ignorecase = true
 vim.opt.fileencoding = "utf-8"
 vim.opt.showmode = false

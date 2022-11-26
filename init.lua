@@ -1,9 +1,3 @@
-local elements = {
-  'core',
-  'plugins',
-  'lsp'
-}
-
-for _, element in pairs(elements) do
-  require(element):setup()
-end
+require("core.helper").list.new({ "core", "plugins", "lsp" }):for_each(function(module)
+  require(module):setup()
+end)
