@@ -1,7 +1,7 @@
 M = {}
 
 M.setup = function(lspconfig, capabilities, keymaps)
-  lspconfig.pyright.setup {
+  lspconfig.pyright.setup({
     on_attach = keymaps,
     capabilities = capabilities,
     settings = {
@@ -14,9 +14,9 @@ M.setup = function(lspconfig, capabilities, keymaps)
         autoSearchPaths = true,
         diagnosticMode = "workspace",
         useLibraryCodeForTypes = true,
-      }
-    }
-  }
+      },
+    },
+  })
 end
 
 return M

@@ -11,4 +11,18 @@ dashboard.custom_center = {
     desc = "File Browser",
     action = "Telescope file_browser",
   },
+  {
+    icon = "  ",
+    desc = "Recent File",
+    action = "Telescope frecency",
+  },
 }
+
+local padding = 0
+local max_len = math.max(unpack(vim.tbl_map(function(entry)
+  return #entry.desc
+end, dashboard.custom_center)))
+dashboard.custom_center = vim.tbl_map(function(entry)
+  entry.desc = entry.desc .. string.rep(" ", max_len - #entry.desc + padding)
+  return entry
+end, dashboard.custom_center)

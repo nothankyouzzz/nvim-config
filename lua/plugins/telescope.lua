@@ -1,5 +1,10 @@
+local telescope = require("telescope")
 local builtin = require("telescope.builtin")
 local which_key = require("which-key")
+
+telescope.load_extension("fzf")
+telescope.load_extension("file_browser")
+telescope.load_extension("frecency")
 
 which_key.register({
   name = "Telescope",
