@@ -1,3 +1,2 @@
-require("core.helper").list.new({ "core", "plugins", "lsp" }):for_each(function(module)
-  require(module):setup()
-end)
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")

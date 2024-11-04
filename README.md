@@ -1,3 +1,3 @@
-# nvim-config
+# 💤 LazyVim - nothankyouzzz
 
-My persional neovim configuration in Lua
+My neovim configuration, based on [LazyVim](https://github.com/LazyVim/LazyVim).
