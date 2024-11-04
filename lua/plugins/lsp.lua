@@ -13,6 +13,16 @@ return {
               buffer = true,
             })
           end,
+
+          settings = {
+            haskell = {
+              plugin = {
+                semanticTokens = {
+                  globalOn = true,
+                },
+              },
+            },
+          },
         },
       }
     end,
