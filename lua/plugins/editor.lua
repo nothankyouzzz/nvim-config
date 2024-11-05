@@ -15,6 +15,9 @@ return {
     cmd = "CompetiTest",
     opts = {
       testcases_use_single_file = true,
+      compile_command = {
+        cpp = { exec = "clang++", args = { "-Wall", "-std=c++20", "$(FNAME)", "-o", "$(FNOEXT)" } },
+      },
     },
   },
 
