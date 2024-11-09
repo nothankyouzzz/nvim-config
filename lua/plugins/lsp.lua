@@ -25,6 +25,13 @@ return {
           },
         },
       }
+
+      local abbr = require("lean.abbreviations")
+      abbr.load()
+      abbr.enable({
+        "*.hs",
+        "*.lhs",
+      })
     end,
   },
 }
