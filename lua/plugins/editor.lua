@@ -4,7 +4,7 @@ return {
     opts = {
       on_highlights = function(highlights, colors)
         highlights["@lsp.type.variable"] = { link = "@variable" }
-        highlights["@lsp.type.enum.haskell"] = { link = "@constructor" }
+        highlights["@lsp.type.enumMember.haskell"] = { link = "@constructor" }
       end,
     },
   },
