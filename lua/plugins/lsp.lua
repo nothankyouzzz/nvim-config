@@ -14,6 +14,8 @@ return {
             })
           end,
 
+          cmd = { os.getenv("HOME") .. "/.ghcup/bin/haskell-language-server-wrapper", "--lsp" },
+
           settings = {
             haskell = {
               plugin = {
@@ -25,13 +27,6 @@ return {
           },
         },
       }
-
-      local abbr = require("lean.abbreviations")
-      abbr.load()
-      abbr.enable({
-        "*.hs",
-        "*.lhs",
-      })
     end,
   },
 }
