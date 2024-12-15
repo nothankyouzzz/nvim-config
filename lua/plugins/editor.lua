@@ -24,9 +24,14 @@ return {
   {
     "folke/edgy.nvim",
     opts = {
-      animate = {
-        enabled = false,
-      },
+      animate = { enabled = false },
+    },
+  },
+
+  {
+    "folke/snacks.nvim",
+    opts = {
+      scroll = { enabled = vim.g.neovide and true or false },
     },
   },
 }
